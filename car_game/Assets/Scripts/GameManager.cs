@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using CarLib;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class GameManager : MonoBehaviour
     float secondsCount;
     int minuteCount;
     int hourCount;
-    Checker carChecker;
+
 
     void Start()
     {
@@ -22,7 +21,6 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("car");
         timerText = GameObject.Find("TimerText").GetComponent<Text>();
         gameOverText = GameObject.Find("GameOverText").GetComponent<Text>();
-        carChecker = new Checker();
     }
 
     void Update()
@@ -49,16 +47,7 @@ public class GameManager : MonoBehaviour
 
     void CheckGameOver()
     {
-        if (carChecker.CheckCarGameOver((int)player.transform.eulerAngles.z))
-        {
-            Time.timeScale = 0.0f;
-            gameOverText.text = "GAME OVER";
-            isOver = true;
-            if (isOver)
-            {
-                StartCoroutine(SetGameOver());
-            }
-        }
+        
     }
 
     IEnumerator SetGameOver()
